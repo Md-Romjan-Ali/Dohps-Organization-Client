@@ -5,6 +5,8 @@ import OrganizationalOverview from "@/component/OrganizationOverview";
 import GetInTouch from "@/component/Contuct";
 import Footer from "@/component/Footer";
 import SuccessBaner from "@/component/SuccessBaner";
+import CorePrograms from "@/component/CorePrograms";
+import FAQSection from "@/component/FAQ";
 
 
 export default async function Home() {
@@ -15,8 +17,10 @@ export default async function Home() {
       <MeetOurFounder />
       <SuccessBaner />
       <MissionVisionValues />
+      <CorePrograms />
       <OrganizationalOverview />
       <GetInTouch />
+      <FAQSection />
       <Footer />
     </div>
   );
