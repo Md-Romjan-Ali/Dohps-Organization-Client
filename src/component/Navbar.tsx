@@ -32,20 +32,22 @@ export default function Navbar() {
 
                     <li>
                         <Link
-                            href="/all-items"
+                            href="/addSuccessStory"
                             className="flex items-center gap-2 font-medium transition hover:text-primary"
                         >
                             <FaBoxOpen />
-                            All Items
+                            Success Story
                         </Link>
                     </li>
                 </ul>
 
                 {/* Login Button */}
                 <div className="hidden md:block">
-                    <Button>
+                    <Link
+                        href={'/login'}
+                    >
                         Login
-                    </Button>
+                    </Link>
                 </div>
 
                 {/* Mobile Button */}
@@ -74,11 +76,11 @@ export default function Navbar() {
 
                         <li>
                             <Link
-                                href="/all-items"
+                                href="/addSuccessStory"
                                 onClick={() => setOpen(false)}
                                 className="flex items-center gap-2"
                             >
-                                All Items
+                                Success Story
                             </Link>
                         </li>
 
