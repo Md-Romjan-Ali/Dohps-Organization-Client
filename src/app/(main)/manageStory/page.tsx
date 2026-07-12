@@ -1,3 +1,4 @@
+import ManageCostomHandle from "@/component/ManageCostomHandle";
 import { getSuccessData } from "@/lib/get/getSuccessData";
 import Image from "next/image";
 
@@ -60,19 +61,7 @@ export default async function StoryTable() {
                                 </td>
 
                                 <td className="px-6 py-4">
-                                    <div className="flex items-center justify-center gap-3">
-                                        <button
-                                            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
-                                        >
-                                            Update
-                                        </button>
-
-                                        <button
-                                            className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
-                                        >
-                                            Delete
-                                        </button>
-                                    </div>
+                                    <ManageCostomHandle id={story._id} />
                                 </td>
                             </tr>
                         ))}

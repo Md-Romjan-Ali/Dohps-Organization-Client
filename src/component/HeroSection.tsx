@@ -92,7 +92,7 @@ export default function Hero() {
                                         </Button>
                                         <Button
                                             size="lg"
-                                            variant="bordered"
+                                            variant="ghost"
                                             className="font-semibold border-white text-white hover:bg-white hover:text-slate-950 w-full sm:w-auto transition-colors"
                                         >
                                             Get Involved

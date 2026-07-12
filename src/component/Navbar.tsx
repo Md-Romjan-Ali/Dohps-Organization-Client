@@ -16,7 +16,7 @@ export default function Navbar() {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
-    const desktopDropdownRef = useRef<HTMLDivElement>(null);
+    const desktopDropdownRef = useRef<HTMLLIElement | null>(null);
     const { data: session } = authClient.useSession();
 
     const logOutHandle = async () => {
@@ -53,13 +53,14 @@ export default function Navbar() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const isAdmin = session?.user?.role === 'admin';
-
+    // const isAdmin = session?.user?.role === 'admin';
+    const isAdmin = (session?.user as { role?: string })?.role === "admin";
     const sections = [
-        { name: "Vision", href: "#vision" },
+        { name: "Mission", href: "#mission" },
         { name: "FAQ", href: "#faq" },
         { name: "Core Programs", href: "#programs" },
-        { name: "Story", href: "#story" }
+        { name: "Story", href: "#story" },
+        { name: "Contuct", href: "#contruct" }
     ];
 
     return (

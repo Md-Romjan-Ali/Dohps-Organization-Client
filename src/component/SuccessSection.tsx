@@ -8,7 +8,7 @@ interface Datas {
 const SuccessSection = async ({ data }: Datas) => {
 
     return (
-        <div>
+        <div id="story">
             <div
                 className="group relative overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl"
             >

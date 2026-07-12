@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetInTouch = () => {
     return (
-        <section className="max-w-7xl mx-auto my-12 p-6 bg-gray-50/50 rounded-xl">
+        <section id='contruct' className="max-w-7xl mx-auto my-12 p-6 bg-gray-50/50 rounded-xl">
             {/* Main Section Header */}
             <h2 className="text-2xl font-bold text-center text-gray-950 mb-8 tracking-tight">
                 Get In Touch

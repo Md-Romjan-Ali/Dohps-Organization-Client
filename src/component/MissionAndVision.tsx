@@ -2,7 +2,7 @@ import React from 'react';
 
 const MissionVisionValues = () => {
     return (
-        <div className="max-w-7xl mx-auto p-6 bg-gray-50 space-y-6">
+        <div id='mission' className="max-w-7xl mx-auto p-6 bg-gray-50 space-y-6">
 
             {/* Top Cards: Mission & Vision */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
