@@ -4,12 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUser } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 interface Users {
     name: string,
     email: string,
     password: string
 }
 export default function RegisterPage() {
+    const router = useRouter()
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState('');
     const [loading, setLoading] = useState(false);
@@ -31,6 +33,7 @@ export default function RegisterPage() {
             setErrors(error.message as string)
             return;
         }
+        router.push('/login')
     };
 
     return (

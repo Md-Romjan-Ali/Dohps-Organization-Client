@@ -21,12 +21,8 @@ const ManageCostomHandle = ({ id }: props) => {
     return (
         <div>
             <div className="flex items-center justify-center gap-3">
-                <button
-                    className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
-                >
-                    <UpdateModal />
-                </button>
 
+                <UpdateModal id={id} />
                 <button
                     onClick={deleteHandle}
                     className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"

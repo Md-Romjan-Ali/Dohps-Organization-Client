@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter()
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState('')
@@ -26,7 +28,7 @@ export default function LoginPage() {
             setErrors(error.message as string);
             return;
         }
-
+        router.push('/')
         console.log(data);
 
         form.reset();

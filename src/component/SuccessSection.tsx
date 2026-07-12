@@ -26,12 +26,13 @@ const SuccessSection = async ({ data }: Datas) => {
                 {/* Content Box */}
                 <div className="p-5 flex flex-col justify-between">
                     <div>
-                        <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 tracking-tight transition-colors duration-300 group-hover:text-blue-600">
-                            {data.title}
-                        </h3>
                         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                            {data.description}
+                            {data.studentName}
                         </p>
+                        <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 tracking-tight transition-colors duration-300 group-hover:text-blue-600">
+                            {data.universityName}
+                        </h3>
+
                     </div>
 
                     {/* Action Row containing React Icon */}

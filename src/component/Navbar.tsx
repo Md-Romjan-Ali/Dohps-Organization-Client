@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { FaHome, FaBoxOpen, FaLayerGroup, FaChevronDown } from "react-icons/fa";
-import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
+import { HiOutlineMenuAlt3, HiOutlineX, HiUsers } from "react-icons/hi";
 import { useState, useEffect, useRef } from "react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+    const router = useRouter()
     const [open, setOpen] = useState(false);
     const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
@@ -21,7 +23,8 @@ export default function Navbar() {
 
     const logOutHandle = async () => {
         await authClient.signOut();
-        setOpen(false);
+        router.push("/")
+
     };
 
     // Scroll Effect: Hide on Scroll Down, Show on Scroll Up
@@ -76,16 +79,16 @@ export default function Navbar() {
                         alt="Logo"
                         width={150}
                         height={150}
-                        className="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-105"
+                        className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-105"
 
                     />
-                    <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                         DOHPS
                     </span>
                 </Link>
 
                 {/* Desktop Menu */}
-                <ul className="hidden items-center gap-8 md:flex text-slate-600">
+                <ul className="hidden items-center gap-8 lg:flex text-slate-600">
                     <li>
                         <Link
                             href="/"
@@ -123,6 +126,7 @@ export default function Navbar() {
                             href="/success"
                             className="flex items-center gap-2 font-medium transition hover:text-blue-600"
                         >
+                            <HiUsers className="text-lg" />
                             All Stories
                         </Link>
                     </li>
@@ -156,7 +160,7 @@ export default function Navbar() {
                 </ul>
 
                 {/* Login/Logout CTA Buttons */}
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                     {session ? (
                         <button
                             onClick={logOutHandle}
@@ -180,14 +184,14 @@ export default function Navbar() {
                         setOpen(!open);
                         setMobileDropdownOpen(false);
                     }}
-                    className="text-2xl md:hidden text-slate-700 focus:outline-none"
+                    className="text-2xl lg:hidden text-slate-700 focus:outline-none"
                 >
                     {open ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
                 </button>
 
                 {/* Mobile Dropdown Panel */}
                 {open && (
-                    <div className="absolute right-5 top-16 z-50 w-64 rounded-2xl border border-slate-100 bg-white p-5 shadow-xl md:hidden transition-all">
+                    <div className="absolute right-5 top-16 z-50 w-64 rounded-2xl border border-slate-100 bg-white p-5 shadow-xl lg:hidden transition-all">
                         <ul className="space-y-4 text-slate-700">
                             <li>
                                 <Link
@@ -233,9 +237,9 @@ export default function Navbar() {
                             <li>
                                 <Link
                                     href="/success"
-                                    onClick={() => setOpen(false)}
-                                    className="flex items-center gap-2 font-medium hover:text-blue-600"
+                                    className="flex items-center gap-2 font-medium transition hover:text-blue-600"
                                 >
+                                    <HiUsers className="text-lg" />
                                     All Stories
                                 </Link>
                             </li>

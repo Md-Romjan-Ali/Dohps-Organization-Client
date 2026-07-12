@@ -5,7 +5,10 @@ export interface GetSuccess {
     _id: string,
     image: string,
     title: string,
-    description: string
+    description: string,
+    studentName: string
+    universityName: string,
+
 }
 
 export default async function CustomCard() {
