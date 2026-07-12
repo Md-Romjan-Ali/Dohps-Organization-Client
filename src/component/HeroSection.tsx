@@ -34,7 +34,7 @@ const slides: SlideItem[] = [
     },
     {
         id: 3,
-        src: 'https://images.unsplash.com/photo-1469571486040-4b9b17502f5a?auto=format&fit=crop&w=1600&q=80',
+        src: 'https://media.licdn.com/dms/image/v2/D4D12AQHNAaGTYqw1Lg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1655700217847?e=2147483647&v=beta&t=xRl077jUSluZW0U2fQTDwdU7aX0fmKQMtSW4SjqX_1A',
         alt: 'Community Transformation',
         title: 'Sustainable Community Impact',
         description: 'Building homes for destitute women and constructing climate-resilient futures for marginalized families.',
@@ -86,7 +86,6 @@ export default function Hero() {
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
                                         <Button
                                             size="lg"
-                                            color="primary"
                                             className="font-semibold shadow-lg shadow-blue-600/30 w-full sm:w-auto bg-blue-600 hover:bg-blue-700"
                                         >
                                             Our Programs

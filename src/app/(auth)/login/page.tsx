@@ -7,10 +7,11 @@ import { authClient } from "@/lib/auth-client";
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
-
+    const [loading, setLoading] = useState(false)
+    const [errors, setErrors] = useState('')
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        setLoading(true)
         const form = e.currentTarget;
 
         const email = (form.email as HTMLInputElement).value;
@@ -20,9 +21,9 @@ export default function LoginPage() {
             email,
             password,
         });
-
+        setLoading(false)
         if (error) {
-            console.log(error.message);
+            setErrors(error.message as string);
             return;
         }
 
@@ -95,7 +96,7 @@ export default function LoginPage() {
                             </button>
                         </div>
                     </div>
-
+                    <p className="text-lg text-red-600">{errors}</p>
                     {/* Remember Me */}
                     <div className="flex items-center justify-between">
                         <label className="flex items-center gap-2 text-sm text-slate-600">
@@ -112,7 +113,9 @@ export default function LoginPage() {
                         type="submit"
                         className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
                     >
-                        Login
+                        {
+                            loading ? 'login...' : 'Login'
+                        }
                     </button>
                 </form>
 

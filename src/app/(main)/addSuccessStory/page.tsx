@@ -1,92 +1,165 @@
-"use client"
+
+"use client";
 
 import { postSuccessData } from "@/lib/post/successPost";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
 interface Data {
-    _id: string,
-    title: string,
-    description: string,
-    image: string
+    _id: string;
+    studentName: string;
+    universityName: string;
+    title: string;
+    description: string;
+    image: string;
 }
+
 const AddItem = () => {
-
+    const [loading, setLoading] = useState(false)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const data = Object.fromEntries(formData.entries()) as unknown as Data
-        const postData = await postSuccessData(data)
-        console.log(postData, 'and', data);
-    }
-    return (
-        <section className="w-full max-w-xl mx-auto px-4 py-12">
-            <div className="bg-white dark:bg-neutral-900 p-6 md:p-8 rounded-xl shadow-md border border-neutral-100 dark:border-neutral-800">
+        e.preventDefault();
+        setLoading(true)
+        const form = e.currentTarget
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries()) as unknown as Data;
+        const promise = postSuccessData(data);
 
-                {/* Header Block */}
-                <div className="mb-6">
-                    <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-1">
-                        DOHPS Portal
+        console.log(promise);
+        toast.promise(promise, {
+            loading: "Publishing success story...",
+            success: "Success story published successfully!",
+            error: "Failed to publish success story.",
+        });
+        const datas = await promise
+        console.log(datas);
+        setLoading(false)
+        form.reset();
+
+    };
+
+    return (
+        <section className="w-full max-w-2xl mx-auto px-4 py-12">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-md dark:border-neutral-800 dark:bg-neutral-900 md:p-8">
+                {/* Header */}
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                        Add Student Success Story
                     </h2>
-                    <h3 className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">
-                        Create New Entry
-                    </h3>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                        Please fill out the details below to publish your content.
+
+                    <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+                        Share an inspiring student success story by filling out the
+                        information below. All fields marked with * are required.
                     </p>
                 </div>
 
-                {/* Semantic HTML Form */}
-                <form onSubmit={handleSubmit} className="space-y-5">
-
-                    {/* 1. Image Upload Field */}
-                    <div className="flex flex-col gap-1.5">
-                        <label htmlFor="image" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                            Upload Image <span className="text-red-500">*</span>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Student Name */}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="studentName"
+                            className="text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                        >
+                            Student Name <span className="text-red-500">*</span>
                         </label>
-                        <input
-                            id="image"
-                            type="url"
-                            accept="image/*"
-                            required
-                            className="w-full px-3 py-2 text-sm bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-neutral-100 dark:file:bg-neutral-800 file:text-neutral-700 dark:file:text-neutral-300 hover:file:bg-neutral-200 dark:hover:file:bg-neutral-700 file:cursor-pointer cursor-pointer"
-                            name="image"
-                        />
-                    </div>
 
-                    {/* 2. Title Input */}
-                    <div className="flex flex-col gap-1.5">
-                        <label htmlFor="title" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                            Title <span className="text-red-500">*</span>
-                        </label>
                         <input
-                            id="title"
+                            id="studentName"
+                            name="studentName"
                             type="text"
                             required
-                            placeholder="Enter item title..."
-                            className="w-full px-3 py-2 text-sm bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white"
-                            name="title"
+                            placeholder="Enter student's full name"
+                            className="w-full rounded-md border border-neutral-300 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
                         />
                     </div>
 
-                    {/* 3. Description Textarea */}
-                    <div className="flex flex-col gap-1.5">
-                        <label htmlFor="description" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                            Description <span className="text-red-500">*</span>
+                    {/* University Name */}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="universityName"
+                            className="text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                        >
+                            University Name <span className="text-red-500">*</span>
                         </label>
+
+                        <input
+                            id="universityName"
+                            name="universityName"
+                            type="text"
+                            required
+                            placeholder="Enter university name"
+                            className="w-full rounded-md border border-neutral-300 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+                        />
+                    </div>
+
+                    {/* Image URL */}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="image"
+                            className="text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                        >
+                            Image URL <span className="text-red-500">*</span>
+                        </label>
+
+                        <input
+                            id="image"
+                            name="image"
+                            type="url"
+                            required
+                            placeholder="https://example.com/image.jpg"
+                            className="w-full rounded-md border border-neutral-300 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+                        />
+                    </div>
+
+                    {/* Story Title */}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="title"
+                            className="text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                        >
+                            Story Title <span className="text-red-500">*</span>
+                        </label>
+
+                        <input
+                            id="title"
+                            name="title"
+                            type="text"
+                            required
+                            placeholder="e.g. From Student to Software Engineer"
+                            className="w-full rounded-md border border-neutral-300 bg-transparent px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+                        />
+                    </div>
+
+                    {/* Description */}
+                    <div className="flex flex-col gap-2">
+                        <label
+                            htmlFor="description"
+                            className="text-sm font-medium text-neutral-700 dark:text-neutral-300"
+                        >
+                            Success Story <span className="text-red-500">*</span>
+                        </label>
+
                         <textarea
                             id="description"
-                            rows={5}
-                            required
-                            placeholder="Provide a detailed description..."
-                            className="w-full px-3 py-2 text-sm bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y dark:text-white"
                             name="description"
+                            rows={6}
+                            required
+                            placeholder="Write the student's success story, achievements, learning journey, and career milestones..."
+                            className="w-full resize-none rounded-md border border-neutral-300 bg-transparent px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
                         />
                     </div>
 
-                    {/* Action CTA Button */}
+                    {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full mt-2 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-md shadow-sm transition-colors duration-200 text-sm flex items-center justify-center gap-2"
+                        className="flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-blue-700"
                     >
-                        Submit Entry
+                        {
+                            loading ?
+                                'Publishing...'
+                                :
+                                'Publish Success Story'
+                        }
+
                     </button>
                 </form>
             </div>

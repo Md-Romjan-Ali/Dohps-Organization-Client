@@ -11,10 +11,11 @@ interface Users {
 }
 export default function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
-
+    const [errors, setErrors] = useState('');
+    const [loading, setLoading] = useState(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        setLoading(true)
         const formData = new FormData(e.currentTarget)
         const user = Object.fromEntries(formData.entries()) as unknown as Users
 
@@ -22,8 +23,14 @@ export default function RegisterPage() {
             name: user.name,
             email: user.email,
             password: user.password,
+
         });
         console.log(data, error);
+        setLoading(false)
+        if (error) {
+            setErrors(error.message as string)
+            return;
+        }
     };
 
     return (
@@ -98,12 +105,15 @@ export default function RegisterPage() {
                             </button>
                         </div>
                     </div>
-
+                    <p className="text-lg text-red-600">{errors}</p>
                     <button
                         type="submit"
                         className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
                     >
-                        Register
+                        {
+                            loading ? 'Registering...' : 'Register'
+                        }
+
                     </button>
                 </form>
 
