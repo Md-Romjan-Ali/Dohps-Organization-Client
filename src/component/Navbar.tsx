@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ThemeSwitch } from "./Theming";
 
 export default function Navbar() {
     const router = useRouter()
@@ -71,21 +72,26 @@ export default function Navbar() {
             className={`sticky top-0 z-50 w-full border-b bg-white/90 backdrop-blur-md shadow-sm transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
                 }`}
         >
+
             <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
                 {/* Logo with Image and Text */}
-                <Link href="/" className="flex items-center gap-3 group">
-                    <Image
-                        src="https://dohps.org/dohps_logo_big.png"
-                        alt="Logo"
-                        width={150}
-                        height={150}
-                        className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-105"
+                <div className="flex gap-2 items-center">
+                    <ThemeSwitch />
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <Image
+                            src="https://dohps.org/dohps_logo_big.png"
+                            alt="Logo"
+                            width={150}
+                            height={150}
+                            className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-105"
 
-                    />
-                    <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        DOHPS
-                    </span>
-                </Link>
+                        />
+                        <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                            DOHPS
+                        </span>
+                    </Link>
+                </div>
+
 
                 {/* Desktop Menu */}
                 <ul className="hidden items-center gap-8 lg:flex text-slate-600">
@@ -160,6 +166,7 @@ export default function Navbar() {
                 </ul>
 
                 {/* Login/Logout CTA Buttons */}
+
                 <div className="hidden lg:block">
                     {session ? (
                         <button
@@ -176,6 +183,7 @@ export default function Navbar() {
                             Login
                         </Link>
                     )}
+
                 </div>
 
                 {/* Mobile Menu Toggle Icon */}
