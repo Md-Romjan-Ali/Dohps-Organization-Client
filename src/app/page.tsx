@@ -19,7 +19,7 @@ export default async function Home() {
       <MissionVisionValues />
       <CorePrograms />
       <OrganizationalOverview />
-      <GetInTouch />
+      {/* <GetInTouch /> */}
       <FAQSection />
       <Footer />
     </div>

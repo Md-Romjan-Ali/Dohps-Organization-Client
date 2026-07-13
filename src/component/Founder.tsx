@@ -3,47 +3,51 @@ import React from 'react';
 
 const MeetOurFounder = () => {
     return (
-        <section className="max-w-7xl mx-auto my-12 p-8 bg-white rounded-xl shadow-sm border border-gray-100">
-            {/* Section Heading */}
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-                Meet Our Founder
-            </h2>
+        <div className='dark:bg-slate-950 py-12'>
+            <section className="max-w-7xl mx-auto p-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800/80 transition-colors duration-300">
+                {/* Section Heading */}
+                <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-3">
+                    Meet Our Founder
+                </h2>
+                <div className="h-1 w-20 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full mb-6" />
 
-            {/* Content Container */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+                {/* Content Container */}
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
 
-                {/* Left Side: Circular Image */}
-                <div className="flex-shrink-0">
-                    <Image
-                        src="https://dohps.org/images/home/founder_img.jpg" // Replace with your image source
-                        alt="Md. Shahin Miya"
-                        width={500}
-                        height={500}
-                        className="w-48 h-48 md:w-70 md:h-70 rounded-full object-cover shadow-md"
-                    />
-                </div>
-
-                {/* Right Side: Text Information */}
-                <div className="flex-1 text-left">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
-                        Md. Shahin Miya
-                    </h3>
-                    <p className="text-blue-600 font-medium mb-4">
-                        Founder and Executive Director
-                    </p>
-
-                    <div className="space-y-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                        <p>
-                            Md. Shahin Miya, our Founder and Executive Director, established DOHPS with a singular vision: to seek out, support, and sustain the brilliant minds who have been left behind by financial or social constraints. Under his leadership, DOHPS works to bridge the gap for talented dropouts and empowers them to achieve their full potential for a sustainable future.
-                        </p>
-                        <p>
-                            Through his personalized guidance and the organization` need-based educational support, these students are encouraged to lead dignified, honest, and meaningful lives while contributing positively to their communities.
-                        </p>
+                    {/* Left Side: Circular Image */}
+                    <div className="flex-shrink-0">
+                        <Image
+                            src="https://dohps.org/images/home/founder_img.jpg"
+                            alt="Md. Shahin Miya"
+                            width={500}
+                            height={500}
+                            className="w-48 h-48 md:w-[400px] md:h-[400px] rounded-full object-cover shadow-md border-4 border-slate-50 dark:border-slate-800"
+                        />
                     </div>
-                </div>
 
-            </div>
-        </section>
+                    {/* Right Side: Text Information */}
+                    <div className="flex-1 text-left">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                            Md. Shahin Miya
+                        </h3>
+                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-4">
+                            Founder and Executive Director
+                        </p>
+
+                        <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                            <p>
+                                Md. Shahin Miya, our Founder and Executive Director, established DOHPS with a singular vision: to seek out, support, and sustain the brilliant minds who have been left behind by financial or social constraints. Under his leadership, DOHPS works to bridge the gap for talented dropouts and empowers them to achieve their full potential for a sustainable future.
+                            </p>
+                            <p>
+                                Through his personalized guidance and the organization`s need-based educational support, these students are encouraged to lead dignified, honest, and meaningful lives while contributing positively to their communities.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
     );
 };
 
