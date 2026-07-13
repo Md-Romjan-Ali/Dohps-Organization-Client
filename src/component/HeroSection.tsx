@@ -37,7 +37,7 @@ const slides: SlideItem[] = [
     },
     {
         id: 3,
-        src: 'https://i.ibb.co.com/d4WQHJMx/726220694-1007311262194349-472581489429437782-n.jpg',
+        src: 'https://i.ibb.co.com/238RNBvS/710832342-3469637509857848-3113787211749819581-n.jpg',
         alt: 'Community Transformation',
         title: 'Sustainable Community Impact',
         description:
@@ -77,7 +77,7 @@ export default function Hero() {
                             />
 
                             {/* Dark Content Overlay Protection Layer */}
-                            <div className="absolute inset-0 bg-black/60 dark:bg-black/70 transition-colors duration-300" />
+                            <div className="absolute inset-0 bg-black/30 dark:bg-black/40 transition-colors duration-300" />
 
                             {/* Main Content Presentation Layer */}
                             <div className="absolute inset-0 z-20 flex items-center justify-center px-6">
@@ -120,13 +120,8 @@ export default function Hero() {
 
             {/* Left Control Arrow */}
             <button
-                aria-label="Previous Slide"
-                className="hero-prev absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30
-                flex h-12 w-12 md:h-14 md:w-14 items-center justify-center
-                rounded-full border border-white/20 dark:border-slate-700/50
-                bg-white/10 dark:bg-slate-900/40 backdrop-blur-md text-white
-                transition-all duration-300 cursor-pointer
-                hover:bg-blue-600 dark:hover:bg-blue-500 hover:scale-110 active:scale-95"
+                className="hero-prev absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full border border-white/20 dark:border-slate-700/50 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md text-white
+                transition-all duration-300 cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-500 over:scale-110 active:scale-95"
             >
                 <FaChevronLeft size={20} />
             </button>
@@ -145,8 +140,7 @@ export default function Hero() {
             </button>
 
             {/* Scroll Down Navigator Component */}
-            <a
-                href="#programs"
+            <div
                 className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center text-sm uppercase tracking-widest text-white/80 dark:text-slate-400 hover:text-white dark:hover:text-slate-200 transition-colors duration-200"
             >
                 <span className="font-medium">Discover More</span>
@@ -164,7 +158,7 @@ export default function Hero() {
                         d="M6 9l6 6 6-6"
                     />
                 </svg>
-            </a>
+            </div>
 
         </header>
     );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaEye, FaEyeSlash, FaGoogle, FaLock } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
@@ -38,7 +38,11 @@ export default function LoginPage() {
         console.log(data);
         form.reset();
     };
-
+    const googleHandle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        });
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 px-4 transition-colors duration-300">
             <div className="w-full max-w-md rounded-xl bg-white dark:bg-slate-900 p-8 shadow-lg border border-transparent dark:border-slate-800/60 transition-colors duration-300">
@@ -142,10 +146,12 @@ export default function LoginPage() {
 
                 {/* Social Strategy Link */}
                 <button
+                    onClick={googleHandle}
                     type="button"
                     disabled={loading}
                     className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent py-3 font-medium text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800/50 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
+                    <FaGoogle />
                     Continue with Google
                 </button>
 
