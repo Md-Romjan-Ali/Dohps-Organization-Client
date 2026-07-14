@@ -110,7 +110,7 @@ The website is fully optimized for:
 Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/Md-Romjan-Ali/Dohps-Organization-Client.git)
 ```
 
 Go to the project folder
