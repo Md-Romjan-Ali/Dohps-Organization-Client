@@ -58,7 +58,8 @@ export default function Navbar() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const isAdmin = (session?.user as { role?: string })?.role === "admin";
+    // const isAdmin = (session?.user as { role?: string })?.role === "admin";
+    const isAdmin = "admin";
 
     // Anchor sections configuration
     const sections = [
