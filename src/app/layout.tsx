@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "../component/Navbar";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
-import { PageThemeProvider } from "@/lib/PageThemeProvider";
 import Donate from "@/component/Donate";
 
 const geistSans = Geist({
@@ -36,11 +35,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
 
         <ThemeProvider>
-          <PageThemeProvider>
-            <Navbar />
-            {children}
-            <Donate />
-          </PageThemeProvider>
+          <Navbar />
+          {children}
+          <Donate />
         </ThemeProvider>
 
         <Toaster />

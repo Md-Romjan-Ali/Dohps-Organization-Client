@@ -39,7 +39,7 @@ const slides: SlideItem[] = [
         id: 3,
         src: 'https://i.ibb.co.com/238RNBvS/710832342-3469637509857848-3113787211749819581-n.jpg',
         alt: 'Community Transformation',
-        title: 'Sustainable Community Impact',
+        title: 'With Children',
         description:
             'Building homes for destitute women and constructing climate-resilient futures for marginalized families.',
     },

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Accordion, AccordionItem } from "@heroui/react";
+import { Accordion } from "@heroui/react";
 import { BiChevronDown, BiHelpCircle } from 'react-icons/bi';
 
 interface Faq {
@@ -38,13 +38,7 @@ export default function FAQSection() {
     ];
 
     // Styled system selectors passed directly down to the Accordion controller
-    const customizedItemClasses = {
-        base: "py-2 w-full border-b border-slate-100 dark:border-slate-800 last:border-none",
-        title: "text-base md:text-lg font-semibold text-slate-900 dark:text-white tracking-tight hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200",
-        trigger: "py-4 px-2 md:px-4 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-800/40 flex items-center justify-between",
-        content: "text-sm md:text-base text-slate-600 dark:text-slate-400 pb-4 px-2 md:px-4 leading-relaxed",
-        indicator: "text-slate-400 dark:text-slate-500 transition-transform duration-200"
-    };
+
 
     return (
         <section id='faq' className="bg-white dark:bg-slate-950 py-16 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">

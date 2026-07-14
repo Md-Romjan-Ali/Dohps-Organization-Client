@@ -6,12 +6,14 @@ import { HiOutlineMenuAlt3, HiOutlineX, HiUsers } from "react-icons/hi";
 import { useState, useEffect, useRef } from "react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { ThemeSwitch } from "./Theming";
 import { Button } from "@heroui/react";
 
 export default function Navbar() {
     const router = useRouter();
+    const pathname = usePathname(); // Get current path to check for active state
+
     const [open, setOpen] = useState(false);
     const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
@@ -58,6 +60,7 @@ export default function Navbar() {
 
     const isAdmin = (session?.user as { role?: string })?.role === "admin";
 
+    // Anchor sections configuration
     const sections = [
         { name: "Mission", href: "#mission" },
         { name: "FAQ", href: "#faq" },
@@ -65,6 +68,29 @@ export default function Navbar() {
         { name: "Story", href: "#story" },
         { name: "Contact", href: "#contact" }
     ];
+
+    // Main navigation structure configured to dynamically check for administration privileges
+    const navLinks = [
+        { name: "Home", href: "/", icon: <FaHome className="text-lg" />, show: true },
+        { name: "Add Story", href: "/addSuccessStory", icon: <FaBoxOpen className="text-lg" />, show: isAdmin },
+        { name: "Manage Story", href: "/manageStory", icon: <FaBoxOpen className="text-lg" />, show: isAdmin },
+        { name: "All Stories", href: "/success", icon: <HiUsers className="text-lg" />, show: true },
+    ];
+
+    // Helper to style links based on active status
+    const getLinkClass = (href: string) => {
+        const isActive = pathname === href;
+        return `flex items-center gap-2 font-semibold transition-colors duration-200 ${isActive
+            ? "text-blue-600 dark:text-blue-400"
+            : "text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+            }`;
+    };
+
+    // Helper to style icons based on link active status
+    const getIconClass = (href: string) => {
+        const isActive = pathname === href;
+        return isActive ? "text-blue-600 dark:text-blue-400" : "text-slate-400 dark:text-slate-500";
+    };
 
     return (
         <nav
@@ -89,53 +115,23 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop Menu */}
-                <ul className="hidden items-center gap-8 lg:flex text-slate-600 dark:text-slate-300">
-                    <li>
-                        <Link
-                            href="/"
-                            className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
-                        >
-                            <FaHome className="text-lg text-slate-400 dark:text-slate-500" />
-                            Home
-                        </Link>
-                    </li>
+                <ul className="hidden items-center gap-8 lg:flex">
+                    {navLinks
+                        .filter((link) => link.show)
+                        .map((link) => (
+                            <li key={link.href}>
+                                <Link href={link.href} className={getLinkClass(link.href)}>
+                                    <span className={getIconClass(link.href)}>{link.icon}</span>
+                                    {link.name}
+                                </Link>
+                            </li>
+                        ))}
 
-                    {isAdmin && (
-                        <>
-                            <li>
-                                <Link
-                                    href="/addSuccessStory"
-                                    className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
-                                >
-                                    <FaBoxOpen className="text-lg text-slate-400 dark:text-slate-500" />
-                                    Add Story
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/manageStory"
-                                    className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
-                                >
-                                    <FaBoxOpen className="text-lg text-slate-400 dark:text-slate-500" />
-                                    Manage Story
-                                </Link>
-                            </li>
-                        </>
-                    )}
-                    <li>
-                        <Link
-                            href="/success"
-                            className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
-                        >
-                            <HiUsers className="text-lg text-slate-400 dark:text-slate-500" />
-                            All Stories
-                        </Link>
-                    </li>
                     {/* Desktop Sections Dropdown */}
                     <li className="relative" ref={desktopDropdownRef}>
                         <button
                             onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                            className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                            className="flex items-center gap-2 font-medium transition text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
                         >
                             <FaLayerGroup className="text-base text-slate-400 dark:text-slate-500" />
                             Explore
@@ -152,7 +148,7 @@ export default function Navbar() {
                                         key={section.name}
                                         href={section.href}
                                         onClick={() => setDesktopDropdownOpen(false)}
-                                        className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 transition hover:bg-slate-55 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
+                                        className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
                                     >
                                         {section.name}
                                     </Link>
@@ -202,23 +198,27 @@ export default function Navbar() {
                 {/* Mobile Dropdown Panel */}
                 {open && (
                     <div className="absolute right-5 top-16 z-50 w-64 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xl lg:hidden transition-all">
-                        <ul className="space-y-4 text-slate-700 dark:text-slate-300">
-                            <li>
-                                <Link
-                                    href="/"
-                                    onClick={() => setOpen(false)}
-                                    className="flex items-center gap-2 font-medium hover:text-blue-600 dark:hover:text-blue-400"
-                                >
-                                    <FaHome className="text-lg text-slate-400 dark:text-slate-500" />
-                                    Home
-                                </Link>
-                            </li>
+                        <ul className="space-y-4">
+                            {navLinks
+                                .filter((link) => link.show)
+                                .map((link) => (
+                                    <li key={link.href}>
+                                        <Link
+                                            href={link.href}
+                                            onClick={() => setOpen(false)}
+                                            className={getLinkClass(link.href)}
+                                        >
+                                            <span className={getIconClass(link.href)}>{link.icon}</span>
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
 
                             {/* Mobile Accordion */}
                             <li>
                                 <button
                                     onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
-                                    className="flex w-full items-center justify-between font-medium hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                                    className="flex w-full items-center justify-between font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
                                 >
                                     <span className="flex items-center gap-2">
                                         <FaLayerGroup className="text-base text-slate-400 dark:text-slate-500" />
@@ -246,42 +246,6 @@ export default function Navbar() {
                                     </ul>
                                 )}
                             </li>
-
-                            <li>
-                                <Link
-                                    href="/success"
-                                    onClick={() => setOpen(false)}
-                                    className="flex items-center gap-2 font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
-                                >
-                                    <HiUsers className="text-lg text-slate-400 dark:text-slate-500" />
-                                    All Stories
-                                </Link>
-                            </li>
-
-                            {isAdmin && (
-                                <>
-                                    <li>
-                                        <Link
-                                            href="/addSuccessStory"
-                                            onClick={() => setOpen(false)}
-                                            className="flex items-center gap-2 font-medium hover:text-blue-600 dark:hover:text-blue-400"
-                                        >
-                                            <FaBoxOpen className="text-lg text-slate-400 dark:text-slate-500" />
-                                            Add Story
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href="/manageStory"
-                                            onClick={() => setOpen(false)}
-                                            className="flex items-center gap-2 font-medium hover:text-blue-600 dark:hover:text-blue-400"
-                                        >
-                                            <FaBoxOpen className="text-lg text-slate-400 dark:text-slate-500" />
-                                            Manage Story
-                                        </Link>
-                                    </li>
-                                </>
-                            )}
 
                             <hr className="border-slate-100 dark:border-slate-800" />
 

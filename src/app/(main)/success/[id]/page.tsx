@@ -1,4 +1,5 @@
-import { GetDetailsSuccessData } from "@/lib/get/getSuccessData";
+export const dynamic = 'force-dynamic';
+import { getDetailsSuccessData } from "@/lib/get/getSuccessData";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGraduationCap, FaUserAlt } from "react-icons/fa";
@@ -9,7 +10,7 @@ interface DetailsPromise {
 
 export default async function ProjectDetails({ params }: DetailsPromise) {
     const { id } = await params;
-    const project = await GetDetailsSuccessData(id);
+    const project = await getDetailsSuccessData(id);
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">

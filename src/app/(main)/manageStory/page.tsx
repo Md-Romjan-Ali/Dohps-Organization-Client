@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ManageCostomHandle from "@/component/ManageCostomHandle";
 import { getSuccessData } from "@/lib/get/getSuccessData";
 import Image from "next/image";
@@ -41,7 +42,7 @@ export default async function StoryTable() {
                     </thead>
 
                     <tbody className="divide-y divide-gray-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-                        {stories.map((story: Story, index: number) => (
+                        {stories?.map((story: Story, index: number) => (
                             <tr
                                 key={story._id}
                                 className="border-b border-gray-100 dark:border-slate-800/60 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition duration-200"

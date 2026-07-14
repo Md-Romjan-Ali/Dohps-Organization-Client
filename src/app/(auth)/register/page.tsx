@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUser } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 interface Users {
     name: string;
@@ -43,7 +44,11 @@ export default function RegisterPage() {
 
         router.push('/login');
     };
-
+    const googleHandle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        })
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 px-4 transition-colors duration-300">
             <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-xl shadow-lg p-8 border border-transparent dark:border-slate-800/60 transition-colors duration-300">
@@ -130,7 +135,16 @@ export default function RegisterPage() {
                         {loading ? 'Registering...' : 'Register'}
                     </button>
                 </form>
-
+                {/* Social Strategy Link */}
+                <button
+                    onClick={googleHandle}
+                    type="button"
+                    disabled={loading}
+                    className="w-full mt-3 flex items-center gap-2 justify-center rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent py-3 font-medium text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800/50 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                    <FcGoogle size={25} />
+                    Continue with Google
+                </button>
                 {/* Redirect Footer */}
                 <p className="mt-6 text-center text-sm text-slate-600 dark:text-slate-400">
                     Already have an account?{" "}

@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaEnvelope, FaEye, FaEyeSlash, FaGoogle, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -149,9 +150,9 @@ export default function LoginPage() {
                     onClick={googleHandle}
                     type="button"
                     disabled={loading}
-                    className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent py-3 font-medium text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800/50 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center gap-2 justify-center rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent py-3 font-medium text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800/50 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                    <FaGoogle />
+                    <FcGoogle size={25} />
                     Continue with Google
                 </button>
 
