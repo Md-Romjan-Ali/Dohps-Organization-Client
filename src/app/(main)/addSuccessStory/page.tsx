@@ -2,6 +2,7 @@
 "use client";
 
 import { postSuccessData } from "@/lib/post/successPost";
+import { Spinner } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -155,7 +156,9 @@ const AddItem = () => {
                     >
                         {
                             loading ?
-                                'Publishing...'
+                                <div className="flex flex-col items-center gap-2">
+                                    <Spinner color="current" />
+                                </div>
                                 :
                                 'Publish Success Story'
                         }

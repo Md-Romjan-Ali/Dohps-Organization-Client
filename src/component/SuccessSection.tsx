@@ -10,10 +10,10 @@ const SuccessSection = async ({ data }: Datas) => {
     return (
         <div id="story">
             <div
-                className="group relative overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl"
+                className="group  relative overflow-hidden bg-blue-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl"
             >
                 {/* Wrap image in a hidden overflow box to lock the zoom within boundaries */}
-                <div className="relative overflow-hidden h-52 w-full">
+                <div className="relative overflow-hidden h-70 w-full">
                     <Image
                         alt={data.title}
                         src={data.image}
@@ -29,7 +29,7 @@ const SuccessSection = async ({ data }: Datas) => {
                         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2">
                             {data.studentName}
                         </p>
-                        <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 tracking-tight transition-colors duration-300 group-hover:text-blue-600">
+                        <h3 className="text-xl w-80 font-bold text-zinc-800 dark:text-zinc-100 tracking-tight transition-colors duration-300 group-hover:text-blue-600">
                             {data.universityName}
                         </h3>
 

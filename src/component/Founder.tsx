@@ -1,5 +1,6 @@
+'use client';
 import Image from 'next/image';
-import React from 'react';
+import { Typewriter } from 'react-simple-typewriter';
 
 const MeetOurFounder = () => {
     return (
@@ -31,7 +32,16 @@ const MeetOurFounder = () => {
                             Md. Shahin Miya
                         </h3>
                         <p className="text-blue-600 dark:text-blue-400 font-medium mb-4">
-                            Founder and Executive Director
+                            <Typewriter
+                                words={[' Founder and Executive Director', 'Retired Bangladesh Army Officer', 'Social Entrepreneur', 'Education Advocate']}
+                                loop={true}
+                                cursor
+                                cursorStyle='_'
+                                typeSpeed={70}
+                                deleteSpeed={50}
+                                delaySpeed={1500}
+                            />
+
                         </p>
 
                         <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">

@@ -9,7 +9,6 @@ const Footer = () => {
         { name: "FAQ", href: "#faq" },
         { name: "Core Programs", href: "#programs" },
         { name: "Story", href: "#story" },
-        { name: "Contact", href: "#contact" }
     ];
 
     return (
@@ -149,8 +148,8 @@ const Footer = () => {
             <div className="text-xs text-center text-slate-500 tracking-wide font-medium flex flex-col sm:flex-row justify-between items-center max-w-7xl mx-auto gap-4">
                 <p>© 2026 DOHPS. All rights reserved.</p>
                 <div className="flex gap-6 text-slate-500">
-                    <Link href="#privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
-                    <Link href="#terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
+                    <p className="hover:text-slate-400 transition-colors">Privacy Policy</p>
+                    <p className="hover:text-slate-400 transition-colors">Terms of Service</p>
                 </div>
             </div>
         </footer>

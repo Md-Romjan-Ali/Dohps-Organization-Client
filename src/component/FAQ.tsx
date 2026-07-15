@@ -64,7 +64,7 @@ export default function FAQSection() {
                             <Accordion.Item key={index}>
                                 <Accordion.Heading>
                                     <Accordion.Trigger
-                                        className={'text-xl'}
+                                        className={'text-xl text-gray-600 dark:text-gray-200'}
                                     >
                                         {item.question}
                                         <Accordion.Indicator>

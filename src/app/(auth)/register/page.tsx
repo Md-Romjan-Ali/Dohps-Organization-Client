@@ -6,6 +6,7 @@ import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUser } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import { Spinner } from "@heroui/react";
 
 interface Users {
     name: string;
@@ -132,7 +133,10 @@ export default function RegisterPage() {
                         disabled={loading}
                         className="w-full rounded-lg bg-blue-600 dark:bg-blue-500 py-3 font-semibold text-white transition hover:bg-blue-700 dark:hover:bg-blue-600 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                        {loading ? 'Registering...' : 'Register'}
+                        {loading ? <div className="flex flex-col items-center gap-2">
+                            <Spinner color="current" />
+
+                        </div> : 'Register'}
                     </button>
                 </form>
                 {/* Social Strategy Link */}

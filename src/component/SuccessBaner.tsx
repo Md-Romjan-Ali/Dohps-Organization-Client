@@ -2,6 +2,7 @@ import { getSuccessData } from "@/lib/get/getSuccessData";
 import SuccessSection from "./SuccessSection";
 import { GetSuccess } from "@/app/(main)/success/page";
 import Link from "next/link";
+import Marquee from "react-fast-marquee";
 
 const SuccessBaner = async () => {
     const datas = await getSuccessData();
@@ -9,11 +10,11 @@ const SuccessBaner = async () => {
 
     return (
         <section className="bg-white dark:bg-slate-950 py-16 border-b border-slate-100 dark:border-slate-900/50 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="w-full py-5 mx-auto px-6">
 
                 {/* Header Section */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-                    <div className="max-w-xl">
+                <div className="flex max-w-7xl mx-auto flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div className="max-w-xl mx-auto text-center">
                         <span className="text-blue-600 dark:text-blue-400 font-semibold text-xs tracking-wider uppercase block mb-1">
                             Our Impact
                         </span>
@@ -38,13 +39,18 @@ const SuccessBaner = async () => {
                 </div>
 
                 {/* 4 Cards Preview Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    {
-                        datas?.slice(0, 4).map((data: GetSuccess) =>
-                            <SuccessSection key={data._id} data={data} />
-                        )
-                    }
-                </div>
+                <Marquee pauseOnHover={true} speed={50} gradient={false} className="overflow-hidden">
+
+                    <div className="flex items-center gap-6">
+
+                        {
+                            datas?.map((data: GetSuccess) =>
+                                <SuccessSection key={data._id} data={data} />
+                            )
+                        }
+
+                    </div>
+                </Marquee>
             </div>
         </section>
     );

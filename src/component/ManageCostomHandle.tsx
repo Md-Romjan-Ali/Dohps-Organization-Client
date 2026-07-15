@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { UpdateModal } from './UpdateStory';
+import { Spinner } from '@heroui/react';
 interface props {
     id: string
 }
@@ -28,7 +29,10 @@ const ManageCostomHandle = ({ id }: props) => {
                     className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700"
                 >
                     {
-                        deleteLoading ? 'Deleting...' : 'Delete'
+                        deleteLoading ?
+                            <div className="flex flex-col items-center gap-2">
+                                <Spinner color="current" />
+                            </div> : 'Delete'
                     }
 
                 </button>
