@@ -15,7 +15,6 @@ Development Organization for Human Potential Sustainability (DOHPS) is a non-pro
 # ✨ Key Features
 
 * 🏠 Modern responsive landing page
-* 📚 Scholarship Program information
 * 👨‍🎓 DOHPS Brilliants showcase
 * ❤️ Donation section with payment information
 * 📰 Success Stories & News
